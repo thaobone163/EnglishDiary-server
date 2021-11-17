@@ -52,7 +52,7 @@ router.post('/login', (req, res) => {
                     "ID_tk": userData.ID_tk
                 });
             } else {
-                res.send('Username or password incorrect');
+                res.json('Username or password incorrect');
             }
         }
     })
