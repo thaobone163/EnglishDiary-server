@@ -11,7 +11,7 @@ const Profile = function (profile) {
 };
 
 Profile.findById = (ID_nguoihoc, result) => {
-    sql.query(`SELECT ID_nguoihoc ,fullname, email, sdt, ngaysinh, diachi FROM nguoihoc WHERE ID_nguoihoc = "${ID_nguoihoc}"`, (err, res) => {
+    sql.query(`SELECT ID_nguoihoc ,fullname, email, sdt, DATE_FORMAT(ngaysinh,"%M %d %Y") as ngaysinh, diachi FROM nguoihoc WHERE ID_nguoihoc = "${ID_nguoihoc}"`, (err, res) => {
         if (err) {
             console.log("error: ", err);
             result(err, null);
@@ -41,5 +41,29 @@ Profile.create = (newProfile, result) => {
         result(null, {id: res.insertId, ...newProfile});
     })
 };
+
+Profile.update = (nguoihoc, result) => {
+    sql.query(`UPDATE nguoihoc SET
+        fullName = ?, email = ?, sdt = ?, ngaysinh = ?, diachi = ? WHERE ID_nguoihoc = ?`,
+        [nguoihoc.fullname, nguoihoc.email, nguoihoc.sdt, nguoihoc.ngaysinh,
+            nguoihoc.diachi, nguoihoc.ID_nguoihoc],
+        (err, res) => {
+            if (err) {
+                console.log("error: ", err);
+                result(null, err);
+                return;
+            }
+
+            if (res.affectedRows === 0) {
+                // not found account with the id
+                result({kind: "not_found"}, null);
+                return;
+            }
+
+            console.log("updated profile: ", {...nguoihoc});
+            result(null, {...nguoihoc});
+        }
+    );
+}
 
 module.exports = Profile;

@@ -9,4 +9,6 @@ router.get("/id/:ID_nguoihoc", profileRouter.find);
 
 router.post("/create", profileRouter.create);
 
+router.put("/update", profileRouter.update);
+
 module.exports = router;

@@ -9,7 +9,7 @@ const Lesson = function (lesson) {
 
 // show all lesson in topic
 Lesson.showAll = (ID_chude, result) => {
-    sql.query(`SELECT tenbai
+    sql.query(`SELECT ID_baihoc, tenbai
                 FROM baihoc
                 WHERE ID_chude = "${ID_chude}"`, (err, res) => {
         if (err) {

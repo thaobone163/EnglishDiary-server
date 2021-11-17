@@ -10,7 +10,7 @@ const Topic = function (topic) {
 
 // show all topic in course
 Topic.showAll = (ID_kh, result) => {
-    sql.query(`SELECT tenchude, image 
+    sql.query(`SELECT ID_chude, tenchude, image 
                 FROM chude 
                 WHERE ID_kh = "${ID_kh}"`, (err, res) => {
         if (err) {
@@ -31,7 +31,7 @@ Topic.showAll = (ID_kh, result) => {
 };
 
 Topic.search = (search, ID_kh, result) => {
-    sql.query(`select tenchude, image from chude where tenchude like '%${search}%' and ID_kh = '${ID_kh}'`, (err, res) => {
+    sql.query(`select ID_chude, tenchude, image from chude where tenchude like '%${search}%' and ID_kh = '${ID_kh}'`, (err, res) => {
         if (err) {
             console.log("error: ", err);
             result(err, null);
