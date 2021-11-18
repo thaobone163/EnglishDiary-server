@@ -11,7 +11,7 @@ const Profile = function (profile) {
 };
 
 Profile.findById = (ID_nguoihoc, result) => {
-    sql.query(`SELECT ID_nguoihoc ,fullname, email, sdt, DATE_FORMAT(ngaysinh,"%M %d %Y") as ngaysinh, diachi FROM nguoihoc WHERE ID_nguoihoc = "${ID_nguoihoc}"`, (err, res) => {
+    sql.query(`SELECT ID_nguoihoc ,fullname, email, sdt, DATE_FORMAT(ngaysinh,"%Y-%m-%d") as ngaysinh, diachi FROM nguoihoc WHERE ID_nguoihoc = "${ID_nguoihoc}"`, (err, res) => {
         if (err) {
             console.log("error: ", err);
             result(err, null);
