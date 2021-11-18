@@ -53,7 +53,7 @@ Story.search = (search, result) => {
 }
 
 Story.findByIdTopic = (ID_chude, result) => {
-    sql.query(`SELECT tentruyen, image FROM truyen WHERE ID_chude = "${ID_chude}"`, (err, res) => {
+    sql.query(`SELECT ID_truyen, tentruyen, image FROM truyen WHERE ID_chude = "${ID_chude}"`, (err, res) => {
         if (err) {
             console.log("error: ", err);
             result(err, null);
@@ -61,8 +61,8 @@ Story.findByIdTopic = (ID_chude, result) => {
         }
 
         if (res.length) {
-            console.log("found story: ", res[0]);
-            result(null, res[0]);
+            console.log("found story: ", res);
+            result(null, res);
             return;
         }
 
@@ -82,8 +82,8 @@ Story.showContent = (ID_truyen, result) => {
         }
 
         if (res.length) {
-            console.log("found content: ", res);
-            result(null, res);
+            console.log("found content: ", res[0]);
+            result(null, res[0]);
             return;
         }
 

@@ -51,7 +51,7 @@ Video.search = (search, result) => {
 }
 
 Video.findByIdTopic = (ID_chude, result) => {
-    sql.query(`SELECT name, image FROM video WHERE ID_chude = "${ID_chude}"`, (err, res) => {
+    sql.query(`SELECT ID_video, name, image FROM video WHERE ID_chude = "${ID_chude}"`, (err, res) => {
         if (err) {
             console.log("error: ", err);
             result(err, null);
@@ -59,8 +59,8 @@ Video.findByIdTopic = (ID_chude, result) => {
         }
 
         if (res.length) {
-            console.log("found story: ", res[0]);
-            result(null, res[0]);
+            console.log("found story: ", res);
+            result(null, res);
             return;
         }
 
@@ -80,8 +80,8 @@ Video.showContent = (ID_video, result) => {
         }
 
         if (res.length) {
-            console.log("found content: ", res);
-            result(null, res);
+            console.log("found content: ", res[0]);
+            result(null, res[0]);
             return;
         }
 

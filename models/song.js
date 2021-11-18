@@ -52,7 +52,7 @@ Song.search = (search, result) => {
 }
 
 Song.findByIdTopic = (ID_chude, result) => {
-    sql.query(`SELECT tenbai, image FROM baihat WHERE ID_chude = "${ID_chude}"`, (err, res) => {
+    sql.query(`SELECT ID_baihat, tenbai, image FROM baihat WHERE ID_chude = "${ID_chude}"`, (err, res) => {
         if (err) {
             console.log("error: ", err);
             result(err, null);
@@ -60,8 +60,8 @@ Song.findByIdTopic = (ID_chude, result) => {
         }
 
         if (res.length) {
-            console.log("found song: ", res[0]);
-            result(null, res[0]);
+            console.log("found song: ", res);
+            result(null, res);
             return;
         }
 
@@ -81,8 +81,8 @@ Song.showContent = (ID_baihat, result) => {
         }
 
         if (res.length) {
-            console.log("found content: ", res);
-            result(null, res);
+            console.log("found content: ", res[0]);
+            result(null, res[0]);
             return;
         }
 

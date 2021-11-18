@@ -16,6 +16,7 @@ const vocabularyRouter = require('./routes/vocabulary');
 const storyRouter = require('./routes/story');
 const videoRouter = require('./routes/video');
 const songRouter = require('./routes/song');
+const progressRouter = require('./routes/progress');
 
 const app = express();
 
@@ -42,6 +43,7 @@ app.use('/vocabulary', vocabularyRouter);
 app.use('/story', storyRouter);
 app.use('/video', videoRouter);
 app.use('/song', songRouter);
+app.use('/progress', progressRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
